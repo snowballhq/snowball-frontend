@@ -1,0 +1,6 @@
+{
+  "name": "snowball-frontend",
+  "dependencies": {
+    "video.js": "^5.10.7"
+  }
+}

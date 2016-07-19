@@ -1,6 +1,7 @@
 var gulp = require('gulp')
 var sass = require('gulp-sass')
 var babel = require('gulp-babel')
+var mainBowerFiles = require('main-bower-files')
 
 var data = {
   html: {
@@ -12,7 +13,7 @@ var data = {
     dest: 'build/stylesheets'
   },
   js: {
-    src: 'src/javascripts/**/*',
+    src: ['src/javascripts/**/*'].concat(mainBowerFiles('**/*.js')),
     dest: 'build/javascripts'
   }
 }
