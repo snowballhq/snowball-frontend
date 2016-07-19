@@ -4,21 +4,31 @@
     <meta charset="UTF-8">
     <title>Snowball</title>
     <link rel="stylesheet" src="stylesheets/application.css">
-    <script src="javascripts/hls.js"></script>
     <script src="javascripts/application.js"></script>
   </head>
   <body>
     <video id="video"></video>
     <script>
-      if (Hls.isSupported()) {
-        var video = document.getElementById('video')
-        var hls = new Hls()
-        hls.loadSource('http://www.streambox.fr/playlists/x36xhzz/x36xhzz.m3u8')
-        hls.attachMedia(video)
-        hls.on(Hls.Events.MANIFEST_PARSED, function () {
-          video.play()
-        })
+      var video = document.getElementById('video')
+      var clips = ['http://dszi951biamkv.cloudfront.net/clips/videos/713f4223-b811-42cc-9cb8-78075499746f/original/onboarding01.mp4', 'http://dszi951biamkv.cloudfront.net/clips/videos/a46d01d7-72f8-4c33-ba20-ff88c7bf542e/original/onboarding02.mp4', 'http://dszi951biamkv.cloudfront.net/clips/videos/84a9ff00-767d-4c38-b2d2-33a14459ffd4/original/onboarding03.mp4', 'http://dszi951biamkv.cloudfront.net/clips/videos/d42669ab-2657-4624-a8f8-8a9804628bc5/original/onboarding04.mp4', 'http://dszi951biamkv.cloudfront.net/clips/videos/6cabf4a9-a167-42ca-88f2-162f183b0879/original/onboarding05.mp4']
+      var playingIndex = 0
+
+      function playClip(i) {
+        playingIndex = i
+        video.setAttribute('src', clips[i])
+        video.load()
+        video.play()
       }
+
+      video.addEventListener('ended', function () {
+        if ((playingIndex + 1) < clips.length) {
+          playClip(playingIndex + 1)
+        } else {
+          playClip(0)
+        }
+      })
+
+      playClip(0)
     </script>
   </body>
 </html>
