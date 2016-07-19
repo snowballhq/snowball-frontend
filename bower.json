@@ -1,6 +1,6 @@
 {
   "name": "snowball-frontend",
   "dependencies": {
-    "video.js": "^5.10.7"
+    "hls.js": "^0.6.1"
   }
 }
